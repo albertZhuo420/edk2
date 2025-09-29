@@ -21,12 +21,12 @@ usage() {
   cat <<EOF
 用法: $0 [-t debug|release] [-o LAST_OCTET] [-I FULL_IP] [-u USER] [-k ID_RSA] [-d BUILD_ROOT] [-n]
   -t    构建类型: debug=DEBUG_GCC5, release=RELEASE_GCC5 (默认: debug)
-  -o    只改最后一段 IP（默认: 53），与 -I 互斥
-  -I    直接指定完整 IP，覆盖 -o/BASE_IP
+  -o    只改最后一段 IP(默认: 53), 与 -I 互斥
+  -I    直接指定完整 IP, 覆盖 -o/BASE_IP
   -u    远端用户名 (默认: ${USER})
   -k    指定 ssh 私钥路径 (例如 ~/.ssh/id_rsa)
   -d    构建根目录 (默认: ${BUILD_ROOT})
-  -n    dry-run：仅打印将执行的命令，不实际传输
+  -n    dry-run: 仅打印将执行的命令, 不实际传输
 示例:
   $0 -t debug -o 53
   $0 -t release -o 88
