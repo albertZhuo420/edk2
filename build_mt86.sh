@@ -14,13 +14,13 @@ usage() {
   exit 1
 }
 
-# 解析构建类型（默认 debug）
-# 取第 1 个位置参数（$1）；
+# 解析构建类型(默认 debug)
+# 取第 1 个位置参数($1)；
 # 如果 $1 未设置或为空字符串，就使用默认值 debug
 # 
-# ${var:-word}：未设置或空 → 用 word（不改变 var）
+# ${var:-word}：未设置或空 → 用 word(不改变 var)
 # ${var:=word}：未设置或空 → 用 word 并赋回 var
-# ${var:?msg}：未设置或空 → 打印 msg 并退出（常用于必填参数）
+# ${var:?msg}：未设置或空 → 打印 msg 并退出(常用于必填参数)
 # ${var:+word}：已设置且非空 → 用 word；否则空
 BTYPE="${1:-debug}"
 case "${BTYPE,,}" in
@@ -37,7 +37,7 @@ if [[ ! -f "$DSC" ]]; then
   if [[ -f "$SCRIPT_DIR/$DSC" ]]; then
     cd "$SCRIPT_DIR"
   else
-    echo "错误: 找不到 $DSC（当前目录: $(pwd)）"
+    echo "错误: 找不到 $DSC(当前目录: $(pwd))"
     exit 2
   fi
 fi
