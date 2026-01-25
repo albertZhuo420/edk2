@@ -9,4 +9,5 @@ tags/
 # 新增
 .venv/
 Intel/
-uMemTest86Pkg/
+uMemTest86Pkg*
+OknMemTestAppPkg/
