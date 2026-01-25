@@ -4,6 +4,30 @@
 
 set -euo pipefail
 
+# 目标目录：当前工作目录下的 Intel
+intel_dir="${PWD}/Intel"
+
+# 转成绝对路径(Linux 通常支持 readlink -f 或 realpath)
+if command -v realpath >/dev/null 2>&1; then
+  intel_dir="$(realpath -m "$intel_dir")"
+elif command -v readlink >/dev/null 2>&1; then
+  intel_dir="$(readlink -f "$intel_dir" 2>/dev/null || echo "$intel_dir")"
+fi
+
+if [[ ! -d "$intel_dir" ]]; then
+  echo "[ERROR] 目录不存在：$intel_dir"
+  echo "请确认你是在包含 Intel/ 目录的工作路径下运行。"
+  exit 1
+fi
+
+# 判断 PACKAGES_PATH 是否“没有”（未设置或为空）
+if [[ -z "${PACKAGES_PATH:-}" ]]; then
+  export PACKAGES_PATH="$intel_dir"
+  echo "[OK] PACKAGES_PATH 未设置/为空，已设置为：$PACKAGES_PATH"
+else
+  echo "[INFO] PACKAGES_PATH 已存在，保持不变：$PACKAGES_PATH"
+fi
+
 DSC="uMemTest86Pkg/uMemTest86SitePkg.dsc"
 
 usage() {
