@@ -11,3 +11,4 @@ tags/
 Intel/
 uMemTest86Pkg_*
 OknMemTestAppPkg/
+.edkCode/
