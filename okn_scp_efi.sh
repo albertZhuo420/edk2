@@ -9,7 +9,7 @@ TYPE="DEBUG_GCC5"                          # 可选: DEBUG_GCC5 / RELEASE_GCC5
 ARCH_PATH="X64/uMemTest86Pkg/uMemTest86Site/OUTPUT/MemTest86SiteX64.efi"
 
 BASE_IP="192.168.101"                      # 固定前三段
-LAST_OCTET="53"                            # 只改最后一段
+LAST_OCTET="73"                            # 只改最后一段
 FULL_IP=""                                 # 若传入则覆盖 BASE_IP/LAST_OCTET
 USER="okn"
 TARGET_DIR="/srv/tftp"
