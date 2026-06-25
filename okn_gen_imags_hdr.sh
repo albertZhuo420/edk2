@@ -9,7 +9,7 @@ printf "################################################\n\n"
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 MT86_PATH="${SCRIPT_DIR}/uMemTest86Pkg"
-PY_TOOL="${SCRIPT_DIR}/bin2header.py"
+PY_TOOL="${SCRIPT_DIR}/okn_mt86_bin2header.py"
 
 IMG_DIR="${MT86_PATH}/images"
 
