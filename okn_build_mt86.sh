@@ -2,6 +2,34 @@
 
 # build_mt86.sh - choose DEBUG/RELEASE build for uMemTest86
 
+# 使用方法:
+#   在 EDK2 根目录执行, 例如编译 DDR4 RDIMM 的 DEBUG 固件:
+# 
+#   cd /home/zmsinance/work/Code/DDR/UEFI/EDK2/edk2-MT86_11.7
+#   source edksetup.sh
+#   bash okn_build_mt86.sh debug -D OKN_PLATFORM=INTEL_DDR4_RDIMM
+# 
+#   四个平台对应的参数为:
+# 
+#   # DDR4 RDIMM
+#   bash okn_build_mt86.sh debug -D OKN_PLATFORM=INTEL_DDR4_RDIMM
+# 
+#   # DDR5 LPDDR5
+#   bash okn_build_mt86.sh debug -D OKN_PLATFORM=INTEL_DDR5_LPDDR5
+# 
+#   # DDR5 UDIMM
+#   bash okn_build_mt86.sh debug -D OKN_PLATFORM=INTEL_DDR5_UDIMM
+# 
+#   # DDR5 SODIMM
+#   bash okn_build_mt86.sh debug -D OKN_PLATFORM=INTEL_DDR5_SODIMM
+# 
+#   编译 RELEASE 固件时, 将 debug 改成 release:
+# 
+#   bash okn_build_mt86.sh release -D OKN_PLATFORM=INTEL_DDR5_UDIMM
+# 
+#   注意 -D 前不要添加 --. 当前脚本会把剩余参数直接传递给 EDK2 build.
+#
+
 set -euo pipefail
 
 DSC="uMemTest86Pkg/uMemTest86SitePkg.dsc"
