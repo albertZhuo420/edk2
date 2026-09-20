@@ -1,0 +1,21 @@
+{
+  "folders": [
+    {
+      "name": "edk2-MT86_11.7",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "C_Cpp.exclusionPolicy": "checkFolders",
+    "C_Cpp.files.exclude": {
+      "**/Build/": true,
+      "**/uMemTest86Pkg/Okn/HostTests/": true,
+      "**/Library/OKN/Platforms/Backends/OknDdr4Backend/": true,
+      "**/Library/OKN/Platforms/Profiles/OknDdr4RdimmProfile/": true,
+      "**/Library/OKN/Platforms/Profiles/OknDdr5UdimmProfile/": true,
+      "**/Library/OKN/Platforms/Profiles/OknDdr5SodimmProfile/": true,
+      "**/Library/OKN/SpdLibs/OknDdr4SpdLib/": true,
+      "**/Library/OKN/SpdLibs/OknDdr5SpdLib/": true
+    }
+  }
+}
