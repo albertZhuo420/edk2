@@ -3,31 +3,47 @@
 # build_mt86.sh - choose DEBUG/RELEASE build for uMemTest86
 
 # 使用方法:
-#   在 EDK2 根目录执行, 例如编译 DDR4 RDIMM 的 DEBUG 固件:
+#  在 EDK2 根目录执行, 例如编译 DDR4 RDIMM 的 DEBUG 固件:
+#    cd /home/zmsinance/work/Code/DDR/UEFI/EDK2/edk2-MT86_11.7
+#    source edksetup.sh
+#    bash okn_build_mt86.sh debug -D OKN_PLATFORM=INTEL_DDR4_RDIMM
 # 
-#   cd /home/zmsinance/work/Code/DDR/UEFI/EDK2/edk2-MT86_11.7
-#   source edksetup.sh
-#   bash okn_build_mt86.sh debug -D OKN_PLATFORM=INTEL_DDR4_RDIMM
+# OKN 输出目录:
 # 
-#   四个平台对应的参数为:
+# Build/MemTest86-site-Okn/DEBUG_GCC5/X64/
+# Build/MemTest86-site-Okn/RELEASE_GCC5/X64/
 # 
-#   # DDR4 RDIMM
-#   bash okn_build_mt86.sh debug -D OKN_PLATFORM=INTEL_DDR4_RDIMM
+# 输出目录:
 # 
-#   # DDR5 LPDDR5
-#   bash okn_build_mt86.sh debug -D OKN_PLATFORM=INTEL_DDR5_LPDDR5
+# Build/MemTest86-site/DEBUG_GCC5/X64/
+# Build/MemTest86-site/RELEASE_GCC5/X64/
 # 
-#   # DDR5 UDIMM
-#   bash okn_build_mt86.sh debug -D OKN_PLATFORM=INTEL_DDR5_UDIMM
 # 
-#   # DDR5 SODIMM
-#   bash okn_build_mt86.sh debug -D OKN_PLATFORM=INTEL_DDR5_SODIMM
+# ### 完整 DEBUG 验证组合
 # 
-#   编译 RELEASE 固件时, 将 debug 改成 release:
+# source ./edksetup.sh
 # 
-#   bash okn_build_mt86.sh release -D OKN_PLATFORM=INTEL_DDR5_UDIMM
+# bash okn_build_mt86.sh debug -D OKN_ENABLE=FALSE
 # 
-#   注意 -D 前不要添加 --. 当前脚本会把剩余参数直接传递给 EDK2 build.
+# bash okn_build_mt86.sh debug -D OKN_PLATFORM=INTEL_DDR4_RDIMM
+# bash okn_build_mt86.sh debug -D OKN_PLATFORM=INTEL_DDR5_LPDDR5
+# bash okn_build_mt86.sh debug -D OKN_PLATFORM=INTEL_DDR5_UDIMM
+# bash okn_build_mt86.sh debug -D OKN_PLATFORM=INTEL_DDR5_SODIMM
+# 
+# ### 完整 RELEASE 组合
+# 
+# source ./edksetup.sh
+# 
+# bash okn_build_mt86.sh release -D OKN_ENABLE=FALSE
+# 
+# bash okn_build_mt86.sh release -D OKN_PLATFORM=INTEL_DDR4_RDIMM
+# bash okn_build_mt86.sh release -D OKN_PLATFORM=INTEL_DDR5_LPDDR5
+# bash okn_build_mt86.sh release -D OKN_PLATFORM=INTEL_DDR5_UDIMM
+# bash okn_build_mt86.sh release -D OKN_PLATFORM=INTEL_DDR5_SODIMM
+# 
+# OKN_ENABLE 默认为 TRUE, 因此 OKN 构建可以省略 -D OKN_ENABLE=TRUE, 但必须指定 OKN_PLATFORM.
+# 
+# 注意 -D 前不要添加 --. 当前脚本会把剩余参数直接传递给 EDK2 build.
 #
 
 set -euo pipefail
