@@ -11,11 +11,13 @@
       "**/Build/": true,
       "**/uMemTest86Pkg/Okn/HostTests/": true,
       "**/Library/OKN/Platforms/Backends/OknDdr4Backend/": true,
+      "**/Library/OKN/Platforms/Backends/OknHygonBackend/": true,
       "**/Library/OKN/Platforms/Profiles/OknDdr4RdimmProfile/": true,
-      "**/Library/OKN/Platforms/Profiles/OknLpddr5Profile/": true,
       "**/Library/OKN/Platforms/Profiles/OknDdr5SodimmProfile/": true,
+      "**/Library/OKN/Platforms/Profiles/OknDdr5UdimmProfile/": true,
+      "**/Library/OKN/Platforms/Profiles/OknHygonDdr5Profile/": true,
       "**/Library/OKN/SpdLibs/OknDdr4SpdLib/": true,
-      "**/Library/OKN/SpdLibs/OknLpddr5SpdLib/": true
+      "**/Library/OKN/SpdLibs/OknDdr5SpdLib/": true
     }
   }
 }
