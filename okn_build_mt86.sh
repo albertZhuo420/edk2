@@ -129,3 +129,52 @@ cd "$EDK2_ROOT"
 
 echo "+ build -a X64 -t GCC5 -b $B -p $DSC $*"
 build -a X64 -t GCC5 -b "$B" -p "$DSC" "$@"
+
+# OKN 构建成功后保留标准文件名, 并额外保存带平台、时间和文件 MD5 的副本.
+# 从透传给 build 的 -D 参数取最终值; 原版构建不生成平台命名的副本.
+OKN_ENABLE=TRUE
+OKN_PLATFORM=
+NEXT_DEFINE=0
+for ARG in "$@"; do
+  if [[ "$ARG" == "-D" ]]; then
+    NEXT_DEFINE=1
+    continue
+  fi
+  if [[ 1 == "$NEXT_DEFINE" ]]; then
+    DEFINE="$ARG"
+    NEXT_DEFINE=0
+  elif [[ "$ARG" == -D* ]]; then
+    DEFINE="${ARG#-D}"
+  else
+    continue
+  fi
+  case "$DEFINE" in
+    OKN_ENABLE=*) OKN_ENABLE="${DEFINE#OKN_ENABLE=}" ;;
+    OKN_PLATFORM=*) OKN_PLATFORM="${DEFINE#OKN_PLATFORM=}" ;;
+  esac
+done
+
+if [[ "$OKN_ENABLE" == "FALSE" ]]; then
+  exit 0
+fi
+if [[ ! "$OKN_PLATFORM" =~ ^[A-Za-z0-9_]+$ ]]; then
+  echo "错误: OKN 构建必须通过 -D OKN_PLATFORM=平台名指定有效平台"
+  exit 5
+fi
+
+EFI_DIR="$EDK2_ROOT/Build/MemTest86-site-Okn/${B}_GCC5/X64"
+EFI_FILE="$EFI_DIR/MemTest86SiteX64.efi"
+if [[ ! -f "$EFI_FILE" ]]; then
+  echo "错误: 构建成功, 但找不到 $EFI_FILE"
+  exit 6
+fi
+EFI_MD5="$(md5sum "$EFI_FILE")"
+EFI_MD5="${EFI_MD5%% *}"
+BUILD_TIME="$(date +%Y%m%d_%H%M%S)"
+NAMED_EFI="$EFI_DIR/MemTest86SiteX64_${OKN_PLATFORM}_${B}_${BUILD_TIME}_${EFI_MD5}.efi"
+if [[ -e "$NAMED_EFI" ]]; then
+  echo "错误: 已存在同名产物 $NAMED_EFI"
+  exit 7
+fi
+cp -- "$EFI_FILE" "$NAMED_EFI"
+echo "已生成: $NAMED_EFI"
